@@ -1,0 +1,50 @@
+body {
+  background-color: #e2c391;
+  font-family: sans-serif;
+}
+h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+#startbutton {
+  padding: 5px;
+  height: 50px;
+  width: 100px;
+  background-color: #aac0aa;
+  font-family: sans-serif;
+  padding: 5px;
+  border-radius: 5px;
+}
+#startbutton:hover {
+  cursor: pointer;
+}
+.header {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  left: 43%;
+  top: 200px;
+}
+#desc {
+  font-size: 20px;
+}
+#timer {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 15px;
+}
+.highscore {
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+#q1 {
+  position: relative;
+  text-align: center;
+  display: none;
+  top: 200px;
+}
+#head {
+  display: inline;
+}
