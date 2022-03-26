@@ -14,6 +14,7 @@ h1 {
   font-family: sans-serif;
   padding: 5px;
   border-radius: 5px;
+  margin-left: 20%;
 }
 #startbutton:hover {
   cursor: pointer;
@@ -22,8 +23,9 @@ h1 {
   position: relative;
   text-align: center;
   display: inline-block;
-  left: 43%;
-  top: 200px;
+  left: 40vw;
+  top: 150px;
+  max-width: 300px;
 }
 #desc {
   font-size: 20px;
@@ -38,6 +40,12 @@ h1 {
   position: absolute;
   top: 0;
   left: 10px;
+  margin: 10px;
+  border: none;
+  background: none;
+}
+.highscore:hover {
+  cursor: pointer;
 }
 #q1 {
   position: relative;
@@ -47,4 +55,29 @@ h1 {
 }
 #head {
   display: inline;
+}
+
+.answer-btn {
+  display: inline;
+  width: 200px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 5px;
+  border-style: none;
+}
+.chbtn {
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+  border-style: none;
+  position: relative;
+  top: 400%;
+  border-radius: 5px;
+  padding: 7px;
+  font-size: 20px;
+}
+.chbtn:hover {
+  cursor: pointer;
 }
