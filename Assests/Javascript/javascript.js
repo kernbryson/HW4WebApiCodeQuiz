@@ -5,10 +5,12 @@ let head = document.querySelector("#head");
 let timer = document.querySelector("#timer");
 let desc = document.querySelector("#desc");
 let answerBtns = document.querySelector(".answer-btn");
+let pic = document.querySelector("#pic");
+let buttonColor = document.getElementById("btn");
+let userScore = 0;
 var currentQuestion = 0;
-let timeSecond = 60;
 var timeLeft = 60;
-let counter = 60;
+let timeInterval = "";
 var questions = [
   {
     question: "Who is Jinxes Sister?",
@@ -34,7 +36,7 @@ var questions = [
       { name: "Rocket Grab", answer: true },
       { name: "Gotcha", answer: false },
       { name: "Come Here", answer: false },
-      { name: "Grab", answer: false },
+      { name: "Pull", answer: false },
     ],
   },
   {
@@ -47,12 +49,12 @@ var questions = [
     ],
   },
   {
-    question: "What house was Harry Potter in?",
+    question: "What currency does GangPlank use?",
     answers: [
-      { name: "Gryffindoor", answer: true },
-      { name: "Ravenclaw", answer: false },
-      { name: "Slytherin", answer: false },
-      { name: "Hufflepuff", answer: false },
+      { name: "Silver Seprents", answer: true },
+      { name: "Bronze Coins", answer: false },
+      { name: "Golden Nuggets", answer: false },
+      { name: "Silver Dollars", answer: false },
     ],
   },
   {
@@ -106,13 +108,15 @@ var questions = [
 startButton.addEventListener("click", startQuiz);
 function startQuiz(startQuiz) {
   // head.style.display = "none";
+  callQuestions("white");
   head.innerHTML = questions[0].question;
   head.style.fontSize = "40px";
   startButton.style.display = "none";
   answerBtns.style.display = "flex";
   desc.style.display = "none";
+  pic.style.display = "none";
 
-  var timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
     if (timeLeft > 1) {
       timer.textContent = timeLeft + " seconds remaining";
 
@@ -126,23 +130,46 @@ function startQuiz(startQuiz) {
       clearInterval(timeInterval);
     }
   }, 1000);
-
-  let questionButtons = "";
+}
+let questionButtons = "";
+function callQuestions(color) {
   for (ans of questions[currentQuestion].answers) {
     questionButtons +=
-      "<button class='chbtn' onclick='myFunction(" +
+      "<button id='btn' class='chbtn' style='background-color:" +
+      color +
+      "' onclick='myFunction(" +
       ans.answer +
       ")'>" +
       ans.name +
       "</button>";
+    answerBtns.innerHTML = questionButtons;
   }
-
-  answerBtns.innerHTML = questionButtons;
 }
+
 function myFunction(answer) {
   if (answer) {
     currentQuestion++;
+    questionButtons = "";
+    answerBtns.innerHTML = "";
+    head.innerHTML = "";
+    userScore += 10;
+    if (currentQuestion <= questions.length) {
+      callQuestions("white");
+      head.innerHTML = questions[currentQuestion].question;
+      console.log(userScore);
+    }
   } else {
-    alert("WRONG!");
+    timeLeft -= 10;
+    questionButtons = "";
+    answerBtns.innerHTML = "";
+    callQuestions("red");
+    setTimeout(() => {
+      questionButtons = "";
+      answerBtns.innerHTML = "";
+      callQuestions("white");
+    }, 700);
   }
+}
+if (currentQuestion >= questions.length) {
+  head.textContent = "This is the end";
 }
