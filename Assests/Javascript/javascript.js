@@ -194,7 +194,9 @@ function highScoreRoster() {
   let scoreBoard = scoreList.append(
     highScoreInput.value + " - " + timeLeft + " Points!"
   );
-  scoreBoard = JSON.parse(localStorage.getItem("scoreBoard"));
+  scoreBoard = JSON.parse(
+    localStorage.getItem("timeLeft", "highScoreInput.value")
+  );
   localStorage.setItem("scoreBoard", JSON.stringify(scoreBoard));
 }
 hsButtonPage.addEventListener("click", hsDirect);
