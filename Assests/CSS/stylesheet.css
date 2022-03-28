@@ -88,3 +88,30 @@ img {
   border: 3px groove #448fa3;
   border-radius: 10px;
 }
+.hsbutton {
+  height: 50px;
+  width: 408px;
+  right: 10%;
+  position: relative;
+  background-color: #aac0aa;
+  font-family: sans-serif;
+  border-radius: 5px;
+}
+.hsinput {
+  height: 100px;
+  width: 400px;
+  position: relative;
+  right: 10%;
+  font-size: 30px;
+  font-family: sans-serif;
+  border-radius: 5px;
+  text-align: center;
+}
+#hslist {
+  position: absolute;
+  display: block;
+  left: 40%;
+  top: 35%;
+  font-size: 25px;
+  font-family: sans-serif;
+}

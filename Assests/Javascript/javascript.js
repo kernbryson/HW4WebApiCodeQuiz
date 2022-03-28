@@ -7,103 +7,106 @@ let desc = document.querySelector("#desc");
 let answerBtns = document.querySelector(".answer-btn");
 let pic = document.querySelector("#pic");
 let buttonColor = document.getElementById("btn");
-let userScore = 0;
+let highScores = document.querySelector("#highscores");
+let header = document.querySelector(".header");
+var highScoreButton = document.createElement("button");
+var highScoreInput = document.createElement("textarea");
+let scoreList = document.querySelector("#hslist");
+let hsButtonPage = document.querySelector(".highscore");
 var currentQuestion = 0;
 var timeLeft = 60;
 let timeInterval = "";
 var questions = [
   {
-    question: "Who is Jinxes Sister?",
+    question: "What is the capital of Alabama?",
     answers: [
-      { name: "Vi", answer: true },
-      { name: "Poppy", answer: false },
-      { name: "Akali", answer: false },
-      { name: "Sejuani", answer: false },
+      { name: "Montgomery", answer: true },
+      { name: "Boston", answer: false },
+      { name: "Austin", answer: false },
+      { name: "Bismark", answer: false },
     ],
   },
-  {
-    question: "Where does darius come from?",
-    answers: [
-      { name: "Bilgewater", answer: false },
-      { name: "Piltover", answer: false },
-      { name: "Demacia", answer: true },
-      { name: "Ionia", answer: false },
-    ],
-  },
-  {
-    question: "What is Blitzcranks Q called?",
-    answers: [
-      { name: "Rocket Grab", answer: true },
-      { name: "Gotcha", answer: false },
-      { name: "Come Here", answer: false },
-      { name: "Pull", answer: false },
-    ],
-  },
-  {
-    question: "Which item is no longer in the game",
-    answers: [
-      { name: "Moonstone Renewer", answer: false },
-      { name: "Iceborn gauntlet", answer: false },
-      { name: "Tiamat", answer: false },
-      { name: "Rod of ages", answer: true },
-    ],
-  },
-  {
-    question: "What currency does GangPlank use?",
-    answers: [
-      { name: "Silver Seprents", answer: true },
-      { name: "Bronze Coins", answer: false },
-      { name: "Golden Nuggets", answer: false },
-      { name: "Silver Dollars", answer: false },
-    ],
-  },
-  {
-    question:
-      "What attribute was removed from a character for being too explicit, then later added back?",
-    answers: [
-      { name: "Cigar", answer: true },
-      { name: "Wine Bottle", answer: false },
-      { name: "Syringe", answer: false },
-      { name: "Bloody Clever", answer: false },
-    ],
-  },
-  {
-    question: "Who is Garens brother?",
-    answers: [
-      { name: "Akron", answer: false },
-      { name: "Crownguard", answer: true },
-      { name: "Darius", answer: false },
-      { name: "Menard", answer: false },
-    ],
-  },
-  {
-    question: "What character says 'You belong in a museum'?",
-    answers: [
-      { name: "Ezreal", answer: true },
-      { name: "Morgana", answer: false },
-      { name: "Sylas", answer: false },
-      { name: "Draven", answer: false },
-    ],
-  },
-  {
-    question: "Which of the following was not a temporary game mode?",
-    answers: [
-      { name: "Hexakill", answer: false },
-      { name: "URF", answer: false },
-      { name: "One For all", answer: false },
-      { name: "Twisted Treeline", answer: true },
-    ],
-  },
-  {
-    question:
-      "What character used to summon a killed enemy and control them with their ultimate?",
-    answers: [
-      { name: "Yorick", answer: true },
-      { name: "Thresh", answer: false },
-      { name: "Annie", answer: false },
-      { name: "Karthus", answer: false },
-    ],
-  },
+  // {
+  //   question: "What is the capital of Alaska?",
+  //   answers: [
+  //     { name: "Salem", answer: false },
+  //     { name: "Indianapolis", answer: false },
+  //     { name: "Juneau", answer: true },
+  //     { name: "Saint Paul", answer: false },
+  //   ],
+  // },
+  // {
+  //   question: "What is the capital of Arizona?",
+  //   answers: [
+  //     { name: "Phoenix", answer: true },
+  //     { name: "Tallahassee", answer: false },
+  //     { name: "Oklahoma City", answer: false },
+  //     { name: "Annapolis", answer: false },
+  //   ],
+  // },
+  // {
+  //   question: "What is the capital of Arkansas",
+  //   answers: [
+  //     { name: "Santa Fe", answer: false },
+  //     { name: "Trenton", answer: false },
+  //     { name: "Montpelier", answer: false },
+  //     { name: "Little Rock", answer: true },
+  //   ],
+  // },
+  // {
+  //   question: "What is the capital of California?",
+  //   answers: [
+  //     { name: "Sacramento", answer: true },
+  //     { name: "Austin", answer: false },
+  //     { name: "Boise", answer: false },
+  //     { name: "Baton Rouge", answer: false },
+  //   ],
+  // },
+  // {
+  //   question: "What is the capital of  Colorado",
+  //   answers: [
+  //     { name: "Denver", answer: true },
+  //     { name: "Columbus", answer: false },
+  //     { name: "Carson City", answer: false },
+  //     { name: "Trenton", answer: false },
+  //   ],
+  // },
+  // {
+  //   question: "What is the capital of Connecticut?",
+  //   answers: [
+  //     { name: "Concord", answer: false },
+  //     { name: "Hartford", answer: true },
+  //     { name: "Boston", answer: false },
+  //     { name: "Columbia", answer: false },
+  //   ],
+  // },
+  // {
+  //   question: "What is the capital of Georgia?",
+  //   answers: [
+  //     { name: "Atlanta", answer: true },
+  //     { name: "Des Moines", answer: false },
+  //     { name: "Montgomery", answer: false },
+  //     { name: "Sante Fe", answer: false },
+  //   ],
+  // },
+  // {
+  //   question: "What is the capital of Delaware?",
+  //   answers: [
+  //     { name: "Helena", answer: false },
+  //     { name: "Cheyenne", answer: false },
+  //     { name: "Dover", answer: false },
+  //     { name: "Austin", answer: true },
+  //   ],
+  // },
+  // {
+  //   question: "What is the capital of Florida?",
+  //   answers: [
+  //     { name: "Tallahassee", answer: true },
+  //     { name: "Des Moines", answer: false },
+  //     { name: "Columbus", answer: false },
+  //     { name: "Baton Rouge", answer: false },
+  //   ],
+  // },
 ];
 startButton.addEventListener("click", startQuiz);
 function startQuiz(startQuiz) {
@@ -115,6 +118,7 @@ function startQuiz(startQuiz) {
   answerBtns.style.display = "flex";
   desc.style.display = "none";
   pic.style.display = "none";
+  hsButtonPage.style.display = "none";
 
   timeInterval = setInterval(function () {
     if (timeLeft > 1) {
@@ -126,23 +130,26 @@ function startQuiz(startQuiz) {
       timeLeft--;
     } else {
       timer.textContent = "";
-
       clearInterval(timeInterval);
     }
   }, 1000);
 }
 let questionButtons = "";
 function callQuestions(color) {
-  for (ans of questions[currentQuestion].answers) {
-    questionButtons +=
-      "<button id='btn' class='chbtn' style='background-color:" +
-      color +
-      "' onclick='myFunction(" +
-      ans.answer +
-      ")'>" +
-      ans.name +
-      "</button>";
-    answerBtns.innerHTML = questionButtons;
+  if (currentQuestion < questions.length) {
+    for (ans of questions[currentQuestion].answers) {
+      questionButtons +=
+        "<button id='btn' class='chbtn' style='background-color:" +
+        color +
+        "' onclick='myFunction(" +
+        ans.answer +
+        ")'>" +
+        ans.name +
+        "</button>";
+      answerBtns.innerHTML = questionButtons;
+    }
+  } else {
+    inputHighScoresPage();
   }
 }
 
@@ -152,11 +159,9 @@ function myFunction(answer) {
     questionButtons = "";
     answerBtns.innerHTML = "";
     head.innerHTML = "";
-    userScore += 10;
     if (currentQuestion <= questions.length) {
       callQuestions("white");
       head.innerHTML = questions[currentQuestion].question;
-      console.log(userScore);
     }
   } else {
     timeLeft -= 10;
@@ -170,6 +175,32 @@ function myFunction(answer) {
     }, 700);
   }
 }
-if (currentQuestion >= questions.length) {
-  head.textContent = "This is the end";
+function inputHighScoresPage() {
+  highScoreInput.className = "hsinput";
+
+  highScoreButton.className = "hsbutton";
+  highScoreButton.innerText = "Input Score";
+  head.innerHTML = "Your score is " + timeLeft;
+  highScoreInput.innerText = "Put you initials here!";
+  clearInterval(timeInterval);
+  header.append(highScoreInput);
+  header.append(highScoreButton);
+  highScoreButton.addEventListener("click", highScoreRoster);
+}
+function highScoreRoster() {
+  head.innerHTML = "High Scores";
+  highScoreButton.style.display = "none";
+  highScoreInput.style.display = "none";
+  let scoreBoard = scoreList.append(
+    highScoreInput.value + " - " + timeLeft + " Points!"
+  );
+  scoreBoard = JSON.parse(localStorage.getItem("scoreBoard"));
+  localStorage.setItem("scoreBoard", JSON.stringify(scoreBoard));
+}
+hsButtonPage.addEventListener("click", hsDirect);
+function hsDirect() {
+  head.innerHTML = "High Scores";
+  desc.style.display = "none";
+  pic.style.display = "none";
+  startButton.style.display = "none";
 }
