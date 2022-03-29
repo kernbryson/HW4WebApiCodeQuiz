@@ -115,3 +115,6 @@ img {
   font-size: 25px;
   font-family: sans-serif;
 }
+.liclass {
+  list-style: none;
+}

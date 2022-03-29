@@ -14,8 +14,10 @@ var highScoreInput = document.createElement("textarea");
 let scoreList = document.querySelector("#hslist");
 let hsButtonPage = document.querySelector(".highscore");
 var currentQuestion = 0;
+var localItems = JSON.parse(localStorage.getItem("Highscore"));
 var timeLeft = 60;
 let timeInterval = "";
+var highScore = [];
 var questions = [
   {
     question: "What is the capital of Alabama?",
@@ -26,87 +28,87 @@ var questions = [
       { name: "Bismark", answer: false },
     ],
   },
-  // {
-  //   question: "What is the capital of Alaska?",
-  //   answers: [
-  //     { name: "Salem", answer: false },
-  //     { name: "Indianapolis", answer: false },
-  //     { name: "Juneau", answer: true },
-  //     { name: "Saint Paul", answer: false },
-  //   ],
-  // },
-  // {
-  //   question: "What is the capital of Arizona?",
-  //   answers: [
-  //     { name: "Phoenix", answer: true },
-  //     { name: "Tallahassee", answer: false },
-  //     { name: "Oklahoma City", answer: false },
-  //     { name: "Annapolis", answer: false },
-  //   ],
-  // },
-  // {
-  //   question: "What is the capital of Arkansas",
-  //   answers: [
-  //     { name: "Santa Fe", answer: false },
-  //     { name: "Trenton", answer: false },
-  //     { name: "Montpelier", answer: false },
-  //     { name: "Little Rock", answer: true },
-  //   ],
-  // },
-  // {
-  //   question: "What is the capital of California?",
-  //   answers: [
-  //     { name: "Sacramento", answer: true },
-  //     { name: "Austin", answer: false },
-  //     { name: "Boise", answer: false },
-  //     { name: "Baton Rouge", answer: false },
-  //   ],
-  // },
-  // {
-  //   question: "What is the capital of  Colorado",
-  //   answers: [
-  //     { name: "Denver", answer: true },
-  //     { name: "Columbus", answer: false },
-  //     { name: "Carson City", answer: false },
-  //     { name: "Trenton", answer: false },
-  //   ],
-  // },
-  // {
-  //   question: "What is the capital of Connecticut?",
-  //   answers: [
-  //     { name: "Concord", answer: false },
-  //     { name: "Hartford", answer: true },
-  //     { name: "Boston", answer: false },
-  //     { name: "Columbia", answer: false },
-  //   ],
-  // },
-  // {
-  //   question: "What is the capital of Georgia?",
-  //   answers: [
-  //     { name: "Atlanta", answer: true },
-  //     { name: "Des Moines", answer: false },
-  //     { name: "Montgomery", answer: false },
-  //     { name: "Sante Fe", answer: false },
-  //   ],
-  // },
-  // {
-  //   question: "What is the capital of Delaware?",
-  //   answers: [
-  //     { name: "Helena", answer: false },
-  //     { name: "Cheyenne", answer: false },
-  //     { name: "Dover", answer: false },
-  //     { name: "Austin", answer: true },
-  //   ],
-  // },
-  // {
-  //   question: "What is the capital of Florida?",
-  //   answers: [
-  //     { name: "Tallahassee", answer: true },
-  //     { name: "Des Moines", answer: false },
-  //     { name: "Columbus", answer: false },
-  //     { name: "Baton Rouge", answer: false },
-  //   ],
-  // },
+  {
+    question: "What is the capital of Alaska?",
+    answers: [
+      { name: "Salem", answer: false },
+      { name: "Indianapolis", answer: false },
+      { name: "Juneau", answer: true },
+      { name: "Saint Paul", answer: false },
+    ],
+  },
+  {
+    question: "What is the capital of Arizona?",
+    answers: [
+      { name: "Phoenix", answer: true },
+      { name: "Tallahassee", answer: false },
+      { name: "Oklahoma City", answer: false },
+      { name: "Annapolis", answer: false },
+    ],
+  },
+  {
+    question: "What is the capital of Arkansas",
+    answers: [
+      { name: "Santa Fe", answer: false },
+      { name: "Trenton", answer: false },
+      { name: "Montpelier", answer: false },
+      { name: "Little Rock", answer: true },
+    ],
+  },
+  {
+    question: "What is the capital of California?",
+    answers: [
+      { name: "Sacramento", answer: true },
+      { name: "Austin", answer: false },
+      { name: "Boise", answer: false },
+      { name: "Baton Rouge", answer: false },
+    ],
+  },
+  {
+    question: "What is the capital of  Colorado",
+    answers: [
+      { name: "Denver", answer: true },
+      { name: "Columbus", answer: false },
+      { name: "Carson City", answer: false },
+      { name: "Trenton", answer: false },
+    ],
+  },
+  {
+    question: "What is the capital of Connecticut?",
+    answers: [
+      { name: "Concord", answer: false },
+      { name: "Hartford", answer: true },
+      { name: "Boston", answer: false },
+      { name: "Columbia", answer: false },
+    ],
+  },
+  {
+    question: "What is the capital of Georgia?",
+    answers: [
+      { name: "Atlanta", answer: true },
+      { name: "Des Moines", answer: false },
+      { name: "Montgomery", answer: false },
+      { name: "Sante Fe", answer: false },
+    ],
+  },
+  {
+    question: "What is the capital of Delaware?",
+    answers: [
+      { name: "Helena", answer: false },
+      { name: "Cheyenne", answer: false },
+      { name: "Dover", answer: false },
+      { name: "Austin", answer: true },
+    ],
+  },
+  {
+    question: "What is the capital of Florida?",
+    answers: [
+      { name: "Tallahassee", answer: true },
+      { name: "Des Moines", answer: false },
+      { name: "Columbus", answer: false },
+      { name: "Baton Rouge", answer: false },
+    ],
+  },
 ];
 startButton.addEventListener("click", startQuiz);
 function startQuiz(startQuiz) {
@@ -131,6 +133,8 @@ function startQuiz(startQuiz) {
     } else {
       timer.textContent = "";
       clearInterval(timeInterval);
+      answerBtns.innerHTML = "";
+      inputHighScoresPage();
     }
   }, 1000);
 }
@@ -180,24 +184,19 @@ function inputHighScoresPage() {
 
   highScoreButton.className = "hsbutton";
   highScoreButton.innerText = "Input Score";
-  head.innerHTML = "Your score is " + timeLeft;
+  head.innerHTML = "Your score is " + (timeLeft += 1);
   highScoreInput.innerText = "Put you initials here!";
   clearInterval(timeInterval);
   header.append(highScoreInput);
   header.append(highScoreButton);
   highScoreButton.addEventListener("click", highScoreRoster);
+  currentQuestion = "";
 }
 function highScoreRoster() {
   head.innerHTML = "High Scores";
   highScoreButton.style.display = "none";
   highScoreInput.style.display = "none";
-  let scoreBoard = scoreList.append(
-    highScoreInput.value + " - " + timeLeft + " Points!"
-  );
-  scoreBoard = JSON.parse(
-    localStorage.getItem("timeLeft", "highScoreInput.value")
-  );
-  localStorage.setItem("scoreBoard", JSON.stringify(scoreBoard));
+  getHighScore();
 }
 hsButtonPage.addEventListener("click", hsDirect);
 function hsDirect() {
@@ -205,4 +204,34 @@ function hsDirect() {
   desc.style.display = "none";
   pic.style.display = "none";
   startButton.style.display = "none";
+  scoreSave();
+  for (i = 0; i < localItems.length; i++) {
+    var li = document.createElement("li");
+    scoreList.appendChild(li);
+    li.append(
+      localItems[i].initials + " - " + localItems[i].score + " Points!"
+    );
+  }
+}
+function getHighScore() {
+  // Clear todoList element and update todoCountSpan
+  // Render a new li for each todo
+  scoreSave();
+  for (i = 0; i < localItems.length; i++) {
+    var li = document.createElement("li");
+    li.className = "liclass";
+    scoreList.appendChild(li);
+    li.append(
+      localItems[i].initials + " - " + localItems[i].score + " Points!"
+    );
+  }
+}
+function scoreSave() {
+  // Stringify and set key in localStorage to todos array
+  highScore = localItems;
+  highScore.push({ initials: highScoreInput.value, score: timeLeft });
+  // var user = new score(highScoreInput.value, timeLeft);
+  // highScore.push(user);
+  // var obj = {};
+  localStorage.setItem("Highscore", JSON.stringify(highScore));
 }
