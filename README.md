@@ -1,5 +1,7 @@
 # HW4 Web API Code Quiz
 
+https://kernbryson.github.io/HW4WebApiCodeQuiz/
+
 ## Description
 
 For this assignment I had to create a quiz that showed off my Javascript knowledge from the pervious week. My motivation for this assignment was to challenge myself to try new things in Javascript. While working on this assignment I learned a lot about creating elements in Javascript along with solidifying my understanding of loops and functions.
