@@ -96,8 +96,8 @@ var questions = [
     answers: [
       { name: "Helena", answer: false },
       { name: "Cheyenne", answer: false },
-      { name: "Dover", answer: false },
-      { name: "Austin", answer: true },
+      { name: "Dover", answer: true },
+      { name: "Austin", answer: false },
     ],
   },
   {
@@ -153,7 +153,6 @@ function callQuestions(color) {
       answerBtns.innerHTML = questionButtons;
     }
   } else {
-    inputHighScoresPage();
   }
 }
 
@@ -163,9 +162,11 @@ function myFunction(answer) {
     questionButtons = "";
     answerBtns.innerHTML = "";
     head.innerHTML = "";
-    if (currentQuestion <= questions.length) {
+    if (currentQuestion < questions.length) {
       callQuestions("white");
       head.innerHTML = questions[currentQuestion].question;
+    } else {
+      inputHighScoresPage();
     }
   } else {
     timeLeft -= 10;
@@ -204,34 +205,49 @@ function hsDirect() {
   desc.style.display = "none";
   pic.style.display = "none";
   startButton.style.display = "none";
-  scoreSave();
-  for (i = 0; i < localItems.length; i++) {
-    var li = document.createElement("li");
-    scoreList.appendChild(li);
-    li.append(
-      localItems[i].initials + " - " + localItems[i].score + " Points!"
-    );
+  if (localItems) {
+    for (i = 0; i < localItems.length; i++) {
+      var li = document.createElement("li");
+      scoreList.appendChild(li);
+      li.append(
+        localItems[i].initials + " - " + localItems[i].score + " Points!"
+      );
+    }
   }
 }
 function getHighScore() {
   // Clear todoList element and update todoCountSpan
   // Render a new li for each todo
   scoreSave();
-  for (i = 0; i < localItems.length; i++) {
-    var li = document.createElement("li");
-    li.className = "liclass";
-    scoreList.appendChild(li);
-    li.append(
-      localItems[i].initials + " - " + localItems[i].score + " Points!"
-    );
+  if (localItems) {
+    for (i = 0; i < localItems.length; i++) {
+      var li = document.createElement("li");
+      li.className = "liclass";
+      scoreList.appendChild(li);
+      li.append(
+        localItems[i].initials + " - " + localItems[i].score + " Points!"
+      );
+    }
+  } else {
+    for (i = 0; i < highScore.length; i++) {
+      var li = document.createElement("li");
+      li.className = "liclass";
+      scoreList.appendChild(li);
+      li.append(
+        highScore[i].initials + " - " + highScore[i].score + " Points!"
+      );
+    }
   }
 }
 function scoreSave() {
   // Stringify and set key in localStorage to todos array
-  highScore = localItems;
+  if (localItems) {
+    highScore = localItems;
+  }
   highScore.push({ initials: highScoreInput.value, score: timeLeft });
   // var user = new score(highScoreInput.value, timeLeft);
   // highScore.push(user);
   // var obj = {};
   localStorage.setItem("Highscore", JSON.stringify(highScore));
+  
 }
