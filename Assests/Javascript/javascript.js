@@ -110,6 +110,7 @@ var questions = [
     ],
   },
 ];
+//starts timer
 startButton.addEventListener("click", startQuiz);
 function startQuiz(startQuiz) {
   // head.style.display = "none";
@@ -119,7 +120,7 @@ function startQuiz(startQuiz) {
   startButton.style.display = "none";
   answerBtns.style.display = "flex";
   desc.style.display = "none";
-  pic.style.display = "none";
+  states.style.display = "none";
   hsButtonPage.style.display = "none";
 
   timeInterval = setInterval(function () {
@@ -143,7 +144,7 @@ function callQuestions(color) {
   if (currentQuestion < questions.length) {
     for (ans of questions[currentQuestion].answers) {
       questionButtons +=
-        "<button id='btn' class='chbtn' style='background-color:" +
+        "<button id='btn' class='chbtn' style='background-color: " +
         color +
         "' onclick='myFunction(" +
         ans.answer +
@@ -155,7 +156,7 @@ function callQuestions(color) {
   } else {
   }
 }
-
+//creates the answer buttons
 function myFunction(answer) {
   if (answer) {
     currentQuestion++;
@@ -180,6 +181,7 @@ function myFunction(answer) {
     }, 700);
   }
 }
+//shows user their high score and allows user to input initials
 function inputHighScoresPage() {
   highScoreInput.className = "hsinput";
 
@@ -193,6 +195,7 @@ function inputHighScoresPage() {
   highScoreButton.addEventListener("click", highScoreRoster);
   currentQuestion = "";
 }
+//shows highscores
 function highScoreRoster() {
   head.innerHTML = "High Scores";
   highScoreButton.style.display = "none";
@@ -216,8 +219,6 @@ function hsDirect() {
   }
 }
 function getHighScore() {
-  // Clear todoList element and update todoCountSpan
-  // Render a new li for each todo
   scoreSave();
   if (localItems) {
     for (i = 0; i < localItems.length; i++) {
@@ -239,15 +240,11 @@ function getHighScore() {
     }
   }
 }
+//saves scores
 function scoreSave() {
-  // Stringify and set key in localStorage to todos array
   if (localItems) {
     highScore = localItems;
   }
   highScore.push({ initials: highScoreInput.value, score: timeLeft });
-  // var user = new score(highScoreInput.value, timeLeft);
-  // highScore.push(user);
-  // var obj = {};
   localStorage.setItem("Highscore", JSON.stringify(highScore));
-  
 }

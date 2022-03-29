@@ -11,13 +11,15 @@ For this assignment I had to create a quiz that showed off my Javascript knowled
 - [Credits](#credits)
 - [License](#license)
 
-## Installation
+## Creation
 
 In order to create this quiz, I first created a simple HTML and CSS mock up and went straight to the javascript. After that I made a start screen that housed the start button that would start the timer and show the questions when clicked. I used a for of loop to create the question answers and replaced the header on the home page with the questions. I used an object with arrays to cycle through the questions. Once the user is finished with the quiz, the timer stops and logs the current time as the users score. The user is then presented with a prompt asking them to put in their initials to save their high score on the score board using a generated list. Lastly, I used local storage to keep the scores.
 
+![Wrong Answer](../HW4WebApiCodeQuiz/Assests/Pictures/wrong%20answer.png)
+
 ## Usage
 
-This quiz tests your knowledge on state capitals and your literacy speed. The quiz is made up of ten multiple choice questions. If you get an answer wrong, you lose ten seconds. If the timer runs out you lose. The goal to this quiz is to answer all of the questions as fast as you can.
+This quiz tests your knowledge on state capitals and your literacy speed. The quiz is made up of ten multiple choice questions. If you get an answer wrong, you lose ten seconds. If the timer runs out; you lose. The goal to this quiz is to answer all of the questions as fast as you can.
 
 ## Credits
 

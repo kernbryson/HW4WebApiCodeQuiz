@@ -2,7 +2,7 @@ body {
   background-color: #e2c391;
   font-family: sans-serif;
 }
-h1 {
+section {
   font-size: 50px;
   font-weight: bold;
 }
@@ -73,7 +73,7 @@ h1 {
   margin: 5px;
   border-style: none;
   position: relative;
-  top: 400%;
+  top: 200%;
   border-radius: 5px;
   padding: 7px;
   font-size: 20px;
@@ -111,9 +111,10 @@ img {
   position: absolute;
   display: block;
   left: 40%;
-  top: 35%;
+  top: 30%;
   font-size: 25px;
   font-family: sans-serif;
+  list-style: none;
 }
 .liclass {
   list-style: none;
