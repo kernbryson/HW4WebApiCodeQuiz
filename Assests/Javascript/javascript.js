@@ -206,7 +206,7 @@ hsButtonPage.addEventListener("click", hsDirect);
 function hsDirect() {
   head.innerHTML = "High Scores";
   desc.style.display = "none";
-  pic.style.display = "none";
+  states.style.display = "none";
   startButton.style.display = "none";
   if (localItems) {
     for (i = 0; i < localItems.length; i++) {
